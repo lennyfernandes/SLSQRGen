@@ -1,0 +1,46 @@
+<br>
+[%MESSAGE_DISPLAY%]
+<br>
+<form name="searchQRLog" method="post" action="/cgi-bin/genQR/viewQRLog.pl">
+<input type="hidden" name="action" value="viewQRLog">
+<table padding="5" width="60%" align="center">
+    <tr>
+        <td>Search By : </td>
+        <td>
+            <select name="searchBy" class="form-control" required>
+                <option value=""> Select </option>
+                <option value="1">Product Name</option>
+                <option value="2">Product Code</option>
+                <option value="3">Batch #</option>
+                <option value="4">Month/Year</option>
+            </select>
+        </td>
+        <td><input type="text" name="searchValue" size="25" maxlength="25" class="form-control"></td>
+        <td><input type="submit" name="submit" value="Submit" class="btn btn-success px-3 mr-2" class="form-control"></td>
+    </tr>
+</table>
+</form>
+<br>
+<br>
+<table class="table table-condensed">
+    <tr>
+        <th>Sr. #</th>
+        <th>Product Name</th>
+        <th>Product Code</th>
+        <th>Batch #</th>
+        <th>Batch Month/Year</th>
+        <th>Action</th>
+    </tr>
+[% FOREACH dtRef IN DATA %]
+    <tr>
+        <td>[% dtRef.srid %]</td>
+        <td>[% dtRef.product_name %]</td>
+        <td>[% dtRef.product_code %]</td>
+        <td>[% dtRef.product_batch %]</td>
+        <td>[% dtRef.product_batch_MY %]</td>
+        <td>
+            <a href="#" onclick="myPopup('/bcpdf/[% dtRef.pdfName %].pdf','QRCode',410,440);" class="btn btn-success px-3 mr-2">Re-Print QR-Code</a>
+        </td>
+    </tr>
+[% END %]
+</table>

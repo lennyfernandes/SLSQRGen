@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="generator" content="">
+  <title>Synergia Life Sciences</title>
+  <!-- CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="/logo.png" alt="Adrem Biosolutions" class="img-fluid" title="Adrem Biosolutions">
+        </div>
+        <div class="col-md-8 my-auto text-right">
+          <h3>QR-Code Printing System</h3>
+        </div>
+      </div>
+     
+    <div class="row">
+      <div class="col-md-12 text-right">
+          <a href="/cgi-bin/genQR/genQR.pl?action=loadGenQR" class="btn btn-success px-3 mr-2">Print QR</a>
+          <a href="/cgi-bin/genQR/viewQRLog.pl?action=viewQRLog" class="btn btn-success px-3 mr-2">View QR Log</a>        
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <main role="main" class="container">
+		
+		[%CONTAINER_DATA%]
+
+  </main>
+  
+<script>
+    function myPopup(myURL, title, myWidth, myHeight) {
+       var left = (screen.width - myWidth) / 2;
+       var top = (screen.height - myHeight) / 4;
+       var myWindow = window.open(myURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+       myWindow.print();
+    }
+
+    function loadUniqCode(product_name,product_code) {
+        document.newQR.product_name.value = product_name;
+        document.newQR.product_code.value = product_code;
+    }
+ </script>
+ </body>
+
+</html>

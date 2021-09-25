@@ -1,0 +1,14 @@
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+      [%MESSAGE_DISPLAY%]
+        <div class="starter-template mt-5">
+          <form action="#" method="POST">
+          <input type="hidden" name="action" value="genQR">
+			  <div class="mt-4 text-center">
+                <a href="/cgi-bin/genQR/genQR.pl?action=loadGenQR" class="btn btn-success px-3 mr-2">Cancel</a>
+                <a href="#" onclick="myPopup('/bcpdf/[%PDF_FILE_PATH_NAME%].pdf','QRCode',410,440);" class="btn btn-success px-3 mr-2">Re-Print QR-Code</a>
+			  </div>
+          </form>
+        </div>
+      </div>
+    </div>

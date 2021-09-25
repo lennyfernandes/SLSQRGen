@@ -1,0 +1,86 @@
+<form action="/cgi-bin/genQR/genQR.pl" method="POST" name="newQR">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+      [%MESSAGE_DISPLAY%]
+        <div class="starter-template mt-5">
+          
+          <input type="hidden" name="action" value="genQR">
+           <div class="row">
+              <div class="form-group col-md-12">
+                <label for="">PRODUCT (25 chars. allowed)</label>
+                <input type="text" name="product_name" value="[%product_name%]" class="form-control" required maxlength="25">
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="">CODE (20 chars. allowed)</label>
+                <input type="text" name="product_code" value="[%product_code%]" class="form-control" maxlength="20" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="">BATCH #</label>
+                <input type="number" name="product_batch" value="[%product_batch%]" class="form-control" min=1 max=9999 required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <select name="product_batch_month" class="form-control">
+                    <option value="[%CURRENT_MONTH%]">[%CURRENT_MONTH%]</option>
+					<option value="JAN">JAN</option>
+					<option value="FEB">FEB</option>
+					<option value="MAR">MAR</option>
+					<option value="APR">APR</option>
+					<option value="MAY">MAY</option>					
+					<option value="JUN">JUN</option>					
+					<option value="JUL">JUL</option>					
+					<option value="AUG">AUG</option>					
+					<option value="SEP">SEP</option>					
+					<option value="OCT">OCT</option>					
+					<option value="NOV">NOV</option>					
+					<option value="DEC">DEC</option>					
+				</select>
+
+              </div>
+              <div class="form-group col-md-6">
+
+                 <select name="product_batch_year" class="form-control">
+                    <option value="[%CURRENT_YEAR%]">[%CURRENT_YEAR%]</option>
+					<option value="2021">2021</option>
+					<option value="2022">2022</option>
+					<option value="2023">2023</option>
+					<option value="2024">2024</option>
+					<option value="2025">2025</option>
+				</select>
+              </div>
+            </div>
+			  <div class="mt-4 text-center">
+				<button class="btn btn-success px-3 mr-2">Print QR</button>
+			  </div>
+        </div>
+      </div>
+    </div>
+</form>    
+<br>
+<br>
+<table  class="table table-condensed">
+    <tr>
+        <td colspan="4" align="CENTER" valign="middle"><h3>Unique Product Name/Product Code</h3></td>
+    </tr>
+    <tr>
+        <th>Sr. #</th>
+        <th>Product Name</th>
+        <th>Product Code</th>
+        <th>Action</th>
+    </tr>
+[% FOREACH dtRef IN loadUniqCodes %]
+    <tr>
+        <td>[% dtRef.srno %]</td>
+        <td>[% dtRef.product_name %]</td>
+        <td>[% dtRef.product_code %]</td>
+        <td>
+            <a href="#" onclick="loadUniqCode('[% dtRef.product_name %]','[% dtRef.product_code %]');" class="btn btn-success px-3 mr-2">LOAD</a>
+            <a href="/cgi-bin/genQR/genQR.pl?action=delUniqCode&srid=[% dtRef.srid %]" class="btn btn-success px-3 mr-2" onclick="confirm('Confirm Deletion of \n\n[% dtRef.product_name %] / [% dtRef.product_code %]')">DELETE</a>
+        </td>
+    </tr>
+[% END %]
+</table>
